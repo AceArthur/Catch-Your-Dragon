@@ -63,7 +63,6 @@ body{behavior:url("css/hover_htc.htc");font-family:"Microsoft YaHei",Arial; colo
 <script src="js/jquery-1.4.4.min.js" type=text/javascript></script>
 <script src="js/formValidator_min.js" type="text/javascript" charset="UTF-8"></script>
 <script src="js/formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>
-<script src="js/Validate_Code.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$.formValidator.initConfig({formid:"form1",debug:false,submitonce:true,
@@ -93,17 +92,48 @@ function test1(obj)
 }
 
 </script>
+<script language="javascript" type="text/javascript">
+        var code;
+        function createCode() {
+            code = "";
+            var codeLength = 6;
+            var checkCode = document.getElementById("checkCode");
+            var selectChar = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+            for (var i = 0; i < codeLength; i++) {
+                var charIndex = Math.floor(Math.random() * 36);
+                code += selectChar[charIndex];
+            }
+            //       alert(code);
+            if (checkCode) {
+                checkCode.className = "code";
+                checkCode.value = code;
+            }
+        }
+        function validate() {
+            var inputCode = document.getElementById("input1").value;
+            if (inputCode.length <= 0) {
+                alert("Please Input Verification Code");
+            }
+            else if (inputCode.toUpperCase() != code.toUpperCase()) {
+                alert("Incorrect Verification Code");
+                createCode();
+            }
+            else {
+                alert("^-^ OK. Insert Data into Database here.");
+            }
+        }
+    </script>
 </head>
 
 <body onload="createCode()">
 
 <!--Initialize Registration-->
     <div class="reg">
-        <form action="userRegister.php" method="post" name="form1" id="form1">
+        <form action="userRegister.php" method="post" name="form1" id="form1" onload="createCode()">
             <dl>
                 <dt class="f14 b">Account Information</dt>
-                <dd><span class="title">Username：</span><input class="reg_input" name="t_UserName" id="t_UserName" onblur="checkusername(this.value);" type="text" /><span id="t_UserNameTip" class="onshow"></span></dd>
-                <dd><span class="title">Password：</span><input class="reg_input" onblur="return checkpasswd(this);" id="t_UserPass" name="t_UserPass" type="password"/><span id="t_UserPassTip" class="onshow"></span></dd>
+                <dd><span class="title">Username：</span><input class="reg_input" name="email" id="t_UserName" onblur="checkusername(this.value);" type="text" /><span id="t_UserNameTip" class="onshow"></span></dd>
+                <dd><span class="title">Password：</span><input class="reg_input" onblur="return checkpasswd(this);" id="t_UserPass" name="password" type="password"/><span id="t_UserPassTip" class="onshow"></span></dd>
                 <dd><span class="title">Confirm Password：</span><input onblur="checkdoublepassword();" class="reg_input" type="password" id="t_RePass" name="t_RePass"/><span id="t_RePassTip" class="onshow"></span></dd>
                 <dd><span class="title">Verification Code：</span><input id="t_CheckCode" class="reg_input_pic" name="t_CheckCode" type="text" maxlength="6" />
                 <input type="text"  readonly="readonly" id="checkCode" class="unchanged" style="width: 80px; text-align:center"  />

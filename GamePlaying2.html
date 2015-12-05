@@ -2,41 +2,41 @@
 <html>
     <head>
         <meta charset="utf-8">
-            <title>CatchYourDragon_LoginPage</title>
-            
-            <script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-            
+            <title>CatchYourDragon_GamePage</title>         
+            <script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>        
             <script type="text/javascript">
                 
                 var Crack_List = new Array();
                 
                 $(document).ready(function(){
-                                  animateDiv();
-                                  $("#glass").on("click", function(event){
-                                                 //if (Crack_List.length <= 10){
-                                                 //	draw(event.pageX, event.pageY);
-                                                 //	alert("Left Hammer: "+(10-Crack_List.length));
-                                                 //	if (Crack_List.length == 10){
-                                                 //		alert("Game Over!");
-                                                 //	}
-                                                 //}
-                                                 draw(event.pageX, event.pageY);
-                                                 })
-                                  
-                                  });
-                                  
-                                  function makeNewPosition(){
-                                      
-                                      // Get viewport dimensions (remove the dimension of the div)
-                                      var h = $(window).height() - 50;
-                                      var w = $(window).width() - 50;
-                                      
-                                      var nh = Math.floor(Math.random() * h);
-                                      var nw = Math.floor(Math.random() * w);
-                                      
-                                      return [nh,nw];
-                                      
+                      animateDiv();
+                      $("#glass").on("click", function(event){
+                            if (Crack_List.length <= 10){
+                                  draw(event.pageX, event.pageY);
+                                  //alert("Left Hammer: "+(10-Crack_List.length));
+                                  document.getElementById("harmer").innerHTML = 10-Crack_List.length;
+                                  document.getElementById("harmer").innerHTML
+                                  if (Crack_List.length == 10){
+                                  alert("Game Over!");
                                   }
+                            }
+                        //draw(event.pageX, event.pageY);
+                        })
+                                  
+                });
+                                  
+            function makeNewPosition(){
+                                      
+                // Get viewport dimensions (remove the dimension of the div)
+                var h = $(window).height() - 50;
+                var w = $(window).width() - 50;
+                                      
+                var nh = Math.floor(Math.random() * h);
+                var nw = Math.floor(Math.random() * w);
+                                      
+                return [nh,nw];
+                                      
+            }
             
             function animateDiv(){
                 var newq = makeNewPosition();
@@ -99,8 +99,7 @@
                 
                 return signal;
             }
-            
-            
+        
             function draw(top, left){
                 
                 //Structure: Crack_List(Array of cracks) -> Crack(Array of edges, length of 3 or 4) -> Edge(Array of points, length of 2) -> Point(Pair of top & left);
@@ -121,7 +120,6 @@
                 if (canvas.getContext) {
                     var ctx = canvas.getContext('2d');
                 };
-                //alert(num);
                 ctx.lineWidth = 5;
                 ctx.strokeStyle="#FD0";
                 ctx.beginPath();
@@ -138,14 +136,10 @@
                         
                         var point_1 = new Point(top-Math.floor((1-j)*60),left+Math.floor((1-j)*60));
                         var point_2 = new Point(point_1.top+Math.floor((Math.random()-0.5)*(1-j)*140),point_1.left+Math.floor((Math.random()-0.5)*(1-j)*140));
-                        //top2=top-Math.floor((1-j)*60);
-                        //left2=left+Math.floor((1-j)*60);
-                        
+                   
                         ctx.lineTo(point_1.top,point_1.left);
                         ctx.lineTo(point_2.top,point_2.left);
-                        //ctx.lineTo(top2,left2);
-                        //ctx.lineTo(top2+Math.floor((Math.random()-0.5)*(1-j)*140),left2+Math.floor((Math.random()-0.5)*(1-j)*140));
-                        
+            
                         ctx.stroke();
                         
                         if (j!=1) {
@@ -163,14 +157,10 @@
                         
                         var point_3 = new Point(top+Math.floor((1-i)*60),left+Math.floor((1-i)*60));
                         var point_4 = new Point(point_3.top+Math.floor((Math.random()-0.5)*(1-i)*140),point_3.left+Math.floor((Math.random()-0.5)*(1-i)*140));
-                        //top1=top+Math.floor((1-i)*60);
-                        //left1=left+Math.floor((1-i)*60);
-                        
+              
                         ctx.lineTo(point_3.top,point_3.left);
                         ctx.lineTo(point_4.top,point_4.left);
-                        //ctx.lineTo(top1,left1);
-                        //ctx.lineTo(top1+Math.floor((Math.random()-0.5)*(1-i)*140),left1+Math.floor((Math.random()-0.5)*(1-i)*140));
-                        
+             
                         ctx.stroke();
                         
                         if (i!=1) {
@@ -182,8 +172,7 @@
                     };
                     
                     Crack_List.push(crack);
-                    //alert(Crack_List.length);
-                    
+         
                 }
                 
                 else if(val > 0.5){
@@ -195,14 +184,10 @@
                         
                         var point_1 = new Point(top-Math.floor((1-j)*80+Math.random()*40),left);
                         var point_2 = new Point(point_1.top+Math.floor(((Math.random()-0.5)*(1-j))*140),point_1.left+Math.floor(((Math.random()-0.5)*(1-j))*140));
-                        //top2=top-Math.floor((1-j)*80+Math.random()*40);
-                        //left2=left;
-                        
+            
                         ctx.lineTo(point_1.top,point_1.left);
                         ctx.lineTo(point_2.top,point_2.left);
-                        //ctx.lineTo(top2,left2);
-                        //ctx.lineTo(top2+Math.floor(((Math.random()-0.5)*(1-j))*140),left2+Math.floor(((Math.random()-0.5)*(1-j))*140));
-                        
+              
                         ctx.stroke();
                         
                         if (j!=1) {
@@ -220,14 +205,10 @@
                         
                         var point_3 = new Point(top,left+Math.floor((1-i)*80+Math.random()*40));
                         var point_4 = new Point(point_3.top+Math.floor(((Math.random()-0.5)*(1-i))*140),point_3.left+Math.floor(((Math.random()-0.5)*(1-i))*140));
-                        //top1=top;
-                        //left1=left+Math.floor((1-i)*80+Math.random()*40);
-                        
+              
                         ctx.lineTo(point_3.top,point_3.left);
                         ctx.lineTo(point_4.top,point_4.left);
-                        //ctx.lineTo(top1,left1);
-                        //ctx.lineTo(top1+Math.floor(((Math.random()-0.5)*(1-i))*140),left1+Math.floor(((Math.random()-0.5)*(1-i))*140));
-                        
+               
                         ctx.stroke();
                         
                         if (i!=1) {
@@ -239,8 +220,7 @@
                     };
                     
                     Crack_List.push(crack);
-                    //alert(Crack_List.length);
-                    
+                  
                 }
                 
                 else if(0.25 < val ){
@@ -252,14 +232,10 @@
                         
                         var point_1 = new Point(top-Math.floor((1-j)*80+Math.random()*30),left);
                         var point_2 = new Point(point_1.top+Math.floor((Math.random()-0.5)*180),point_1.left+Math.floor((Math.random()-0.5)*180));
-                        //top2=top-Math.floor((1-j)*80+Math.random()*30);
-                        //left2=left;
-                        
+                  
                         ctx.lineTo(point_1.top,point_1.left);
                         ctx.lineTo(point_2.top,point_2.left);
-                        //ctx.lineTo(top2,left2);
-                        //ctx.lineTo(top2+Math.floor((Math.random()-0.5)*180),left2+Math.floor((Math.random()-0.5)*180));
-                        
+                  
                         ctx.stroke();
                         
                         edge1.Point_List.push(point_1);
@@ -276,14 +252,10 @@
                         
                         var point_3 = new Point(top,left+Math.floor((1-i)*80+Math.random()*30));
                         var point_4 = new Point(point_3.top+Math.floor((Math.random()-0.5)*180),point_3.left+Math.floor((Math.random()-0.5)*180));
-                        //top1=top;
-                        //left1=left+Math.floor((1-i)*80+Math.random()*30);
-                        
+                      
                         ctx.lineTo(point_3.top,point_3.left);
                         ctx.lineTo(point_4.top,point_4.left);
-                        //ctx.lineTo(top1,left1);
-                        //ctx.lineTo(top1+Math.floor((Math.random()-0.5)*180),left1+Math.floor((Math.random()-0.5)*180));
-                        
+                     
                         ctx.stroke();
                         
                         edge2.Point_List.push(point_3);
@@ -299,14 +271,10 @@
                         
                         var point_5 = new Point(top+Math.floor((1-k)*60+Math.random()*30),left-Math.floor((1-k)*60+Math.random()*30));
                         var point_6 = new Point(point_5.top+Math.floor((Math.random()-0.5)*140),point_5.left+Math.floor((Math.random()-0.5)*140));
-                        //top3=top+Math.floor((1-k)*60+Math.random()*30);
-                        //left3=left-Math.floor((1-k)*60+Math.random()*30);
-                        
+                   
                         ctx.lineTo(point_5.top,point_5.left);
                         ctx.lineTo(point_6.top,point_6.left);
-                        //ctx.lineTo(top3,left3);
-                        //ctx.lineTo(top3+Math.floor((Math.random()-0.5)*140),left3+Math.floor((Math.random()-0.5)*140));
-                        
+                     
                         ctx.stroke();
                         
                         edge3.Point_List.push(point_5);
@@ -316,12 +284,10 @@
                     };
                     
                     Crack_List.push(crack);
-                    //alert(Crack_List.length);
                     
                 }
                 
                 else{
-                    //alert("!");
                     var crack = new Crack();
                     for (var j = 0; j >= 0; j--) {
                         var edge1 = new Edge();
@@ -330,14 +296,10 @@
                         
                         var point_1 = new Point(top+Math.floor((1-j)*80+Math.random()*30),left);
                         var point_2 = new Point(point_1.top+Math.floor((Math.random()-0.5)*180),point_1.left+Math.floor((Math.random()-0.5)*180));
-                        //top2=top+Math.floor((1-j)*80+Math.random()*30);
-                        //left2=left;
-                        
+                       
                         ctx.lineTo(point_1.top,point_1.left);
                         ctx.lineTo(point_2.top,point_2.left);		
-                        //ctx.lineTo(top2,left2);
-                        //ctx.lineTo(top2+Math.floor((Math.random()-0.5)*180),left2+Math.floor((Math.random()-0.5)*180));
-                        
+                       
                         ctx.stroke();
                         
                         edge1.Point_List.push(point_1);
@@ -353,15 +315,10 @@
                         
                         var point_3 = new Point(top,left-Math.floor((1-i)*80+Math.random()*30));
                         var point_4 = new Point(point_3.top+Math.floor((Math.random()-0.5)*180),point_3.left+Math.floor((Math.random()-0.5)*180));
-                        //top1=top;
-                        //left1=left-Math.floor((1-i)*80+Math.random()*30);
-                        
+                   
                         ctx.lineTo(point_3.top,point_3.left);
                         ctx.lineTo(point_4.top,point_4.left);		
-                        //ctx.lineTo(top1,left1);
-                        //ctx.lineTo(top1+Math.floor((Math.random()-0.5)*180),left1+Math.floor((Math.random()-0.5)*180));
-                        
-                        
+                    
                         ctx.stroke();
                         
                         edge2.Point_List.push(point_3);
@@ -369,6 +326,7 @@
                         crack.Edge_List.push(edge2);
                         
                     };
+                    
                     for (var k = 0; k >= 0; k--) {
                         var edge3 = new Edge();
                         ctx.beginPath();
@@ -376,14 +334,10 @@
                         
                         var point_5 = new Point(top-Math.floor((1-k)*60+Math.random()*30),left+Math.floor((1-k)*60+Math.random()*30));
                         var point_6 = new Point(point_5.top+Math.floor((Math.random()-0.5)*140),point_5.left+Math.floor((Math.random()-0.5)*140));
-                        //top3=top-Math.floor((1-k)*60+Math.random()*30);
-                        //left3=left+Math.floor((1-k)*60+Math.random()*30);
-                        
+                       
                         ctx.lineTo(point_5.top,point_5.left);
                         ctx.lineTo(point_6.top,point_6.left);		
-                        //ctx.lineTo(top3,left3);
-                        //ctx.lineTo(top3+Math.floor((Math.random()-0.5)*140),left3+Math.floor((Math.random()-0.5)*140));
-                        
+                    
                         ctx.stroke();
                         
                         edge3.Point_List.push(point_5);
@@ -393,27 +347,30 @@
                     };
                     
                     Crack_List.push(crack);
-                    //alert(Crack_List.length);
                     
                 }
-                
-                
-                
-                
-            };
+             
+            };           
             
-            
-            
-                </script>
-            <link href="css/style.css" rel="stylesheet" type="text/css">
-                <link href="css/box_style.css" rel="stylesheet" type="text/css">
+    </script>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/box_style.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+		.label{
+			font-size:36px;
+			font-style:italic;
+			font-weight:bold;
+			display:inline-block;          
+    </style>
     </head>
     
     <body style="background-image:url(images/bg.png)">
-        
-        
-        <div id="glass"><img style="width: 100%; height: 100%;" src="images/glass1.png"> </div>		
-        
+    <div style="display:inline-block; position:fixed; z-index:100; right:75px; top:25px;">
+    <span class="label">Score: </span><div id="scoreboard" class="label" style="display:inline-block;">0</div>
+    <br />   
+    <span class="label">Harmer:</span><div id="harmer" class="label" style="display:inline-block;">10</div>   
+    </div>       
+        <div id="glass"><img style="width: 100%; height: 100%;" src="images/glass1.png"></div>		     
         <div id="dragon" style="position:fixed; background-color:red; width:50px; height:50px; z-index: -10;">
             <img src="images/dragon.png">
                 </div>
