@@ -7,6 +7,12 @@
             <script type="text/javascript">
                 
                 var Crack_List = new Array();
+                var goForword = true;
+                var COUNT = 5;
+                var dest_x;
+                var dest_y;
+                var slope_cos;
+                var slope_sin;
                 
                 $(document).ready(function(){
                       animateDiv();
@@ -23,25 +29,71 @@
                         })
                                   
                 });
+            
+            function changeDirection(top, left){
+                var oldq = $('#dragon').offset();
+                var x1 = oldq.top + 64;
+                var y1 = oldq.left + 59;
+                var x2 = top;
+                var y2 = left;
+                var distance = Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
+                if(distance <= 100){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
                                   
-            function makeNewPosition(){
+            function makeNewPosition(top, left){
                                       
                 // Get viewport dimensions (remove the dimension of the div)
-                var h = $(window).height() - 50;
-                var w = $(window).width() - 50;
+                //var h = top + 50;
+                //var w = left + 50;
                                       
-                var nh = Math.floor(Math.random() * h);
-                var nw = Math.floor(Math.random() * w);
+                if(changeDirection(dest_x, dest_y) == true){
+                    goForword = true;
+                }
+                if(goForword == true){
+                    //alert("NEW DIRECTION");
+                    var h = $(window).height() - 50;
+                    var w = $(window).width() - 50;
+                    var n_top = Math.floor(Math.random() * h);
+                    var n_left = Math.floor(Math.random() * w);
+                    while(n_top == top && n_left == left){
+                        var n_top = Math.floor(Math.random() * h);
+                        var n_left = Math.floor(Math.random() * w);
+                    }
+                    //var newGoal = setNewDirection();
+                    //dest_x = newGoal.n_top;
+                    //dest_y = newGoal.n_left;
+                    dest_x = n_top;
+                    dest_y = n_left;
+                    //alert(dest_x);
+                    slope_sin = (dest_y - left)/Math.sqrt(Math.pow(dest_y - left, 2) + Math.pow(dest_x - top, 2));
+                    slope_cos = (dest_x - top)/Math.sqrt(Math.pow(dest_y - left, 2) + Math.pow(dest_x - top, 2));
+                    goForword = false;
+                }
                                       
-                return [nh,nw];
+                                      
+                //alert(slope_cos, slope_sin);
+                var nh = top + 20 * slope_cos;
+                var nw = left + 20 * slope_sin;
+                //COUNT--;
+                return [nh, nw];
                                       
             }
             
             function animateDiv(){
-                var newq = makeNewPosition();
+                //var newq = makeNewPosition();
                 var oldq = $('#dragon').offset();
-                if(crackDetection(oldq.top, oldq.left) == true){
-                    
+                var center_top = oldq.top + 64;
+                var center_left = oldq.left + 59;
+                //alert("dragon_offset:");
+                //alert(center_top);
+                var newq = makeNewPosition(oldq.top, oldq.left);
+                if(crackDetection(center_top, center_left) == true){
+                    alert(" Danger!");
                 }
                 else{
                     var speed = calcSpeed([oldq.top, oldq.left], newq);
