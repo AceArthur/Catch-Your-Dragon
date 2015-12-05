@@ -52,9 +52,11 @@
 	function dragonStartMove(){
 		$("#cover").fadeIn();
 		$("#dragon").show();
-		alert("ddd");
-		window.location.href='./GamePlaying2.html';
-		animateDiv();
+		//alert("ddd");
+		if (glasstype==1) {
+		window.location.href='./GamePlaying2.html'};
+		if (glasstype==2) {window.location.href='./GamePlaying3.html'};
+		//animateDiv();
 	}
 	function makeNewPosition(){
     
