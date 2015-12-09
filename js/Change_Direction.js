@@ -1,5 +1,6 @@
 function changeDirection(top, left){
   var oldq = $('#dragon').offset();
+  //why 64 59?
   var x1 = oldq.top + 64;
   var y1 = oldq.left + 59;
   var x2 = top;

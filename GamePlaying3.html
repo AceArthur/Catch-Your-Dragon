@@ -18,7 +18,7 @@
         animateDiv();
         $("#glass").on("click", function(event){
           if (Crack_List.length <= 10){
-            draw(event.pageX, event.pageY);
+            draw(event.pageY, event.pageX);
             document.getElementById("harmer").innerHTML = 10-Crack_List.length;
             if (Crack_List.length == 10){
               alert("Game Over!");
@@ -50,7 +50,7 @@
       <img src="images/dragon.png">
     </div>
     <div id="cvs_div" style="position:fixed; width:1000px; height:100vh; top:0px; left: 0px; z-index: -5;">
-      <canvas id="canvas" width="1000", height="1000"></canvas>
+      <canvas id="canvas" width="1400", height="800"></canvas>
     </div>
   </body>
 </html>

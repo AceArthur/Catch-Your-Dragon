@@ -1,10 +1,11 @@
-var goForword = true;
+var goForword = true;   // why set it as true default
 var dest_x;
 var dest_y;
 var slope_cos;
 var slope_sin;
 
-function makeNewPosition(top, left){                                    
+function makeNewPosition(top, left){ 
+  //what are dest_x dest_y  used for ?
   if(changeDirection(dest_x, dest_y) === true){
     goForword = true;
   }

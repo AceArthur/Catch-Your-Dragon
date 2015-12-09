@@ -17,7 +17,7 @@ function draw(top, left){
   ctx.lineWidth = 5-2*Math.floor(0.5+Math.random());
   ctx.strokeStyle="color:#000000";
   ctx.beginPath();
-  ctx.arc(top,left,3,0,2*Math.PI,true);
+  ctx.arc(left,top,3,0,2*Math.PI,true);
   ctx.fill();                
   var val = Math.random();
   {
@@ -25,11 +25,14 @@ function draw(top, left){
     for (var j = num-1+Math.floor(0.5+val); j >0; j--) {
       var edge1 = new Edge();
       ctx.beginPath();
-      ctx.moveTo(top, left);
-      var point_1 = new Point(top+(Math.sin((2.09-0.5*Math.floor(0.5+val))*j+val*3))*40,left+(Math.cos((2.09-0.5*Math.floor(0.5+val))*j+val*3))*40);
-      var point_2 = new Point(point_1.top+Math.floor((Math.random()-0.5)*70),point_1.left+Math.floor((Math.random()-0.5)*70));
-      ctx.lineTo(point_1.top,point_1.left);
-      ctx.lineTo(point_2.top,point_2.left);
+      ctx.moveTo(left, top);
+	  var valueTri = (2.09-0.5*Math.floor(0.5+val))*j+val*3;
+      var point_1 = new Point(top+(Math.sin(valueTri))*40,left+(Math.cos(valueTri))*40);
+	  var increment = Math.floor((Math.random()-0.5)*70);
+      var point_2 = new Point(point_1.top+increment,point_1.left+increment);
+      
+	  ctx.lineTo(point_1.left,point_1.top);
+      ctx.lineTo(point_2.left,point_2.top);
       ctx.stroke();
       edge1.Point_List.push(point_1);
       edge1.Point_List.push(point_2);
