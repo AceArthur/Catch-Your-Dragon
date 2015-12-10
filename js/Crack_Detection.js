@@ -12,9 +12,12 @@ function crackDetection(top, left){
 	  var x0 = left;
 	  var y0 = top;
 	  var distance = (Math.abs((y2 - y1) * x0 +(x1 - x2) * y0 + ((x2 * y1) -(x1 * y2)))) / (Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x1 - x2, 2)));
-	  if((distance <= (safetyDistance + 50))&&
-		 (Math.abs(x1-x0)+Math.abs(x2-x0) - Math.abs(x2-x1) <= 4 && Math.abs(x1-x0)+Math.abs(x2-x0) - Math.abs(x2-x1) >= -4)){
+	  if((distance <= (safetyDistance + 50))
+		&&Math.abs((Math.abs(x1-x0)+Math.abs(x2-x0) - Math.abs(x2-x1))) <= 50 
+		&&Math.abs((Math.abs(y1-y0)+Math.abs(y2-y0) - Math.abs(y2-y1))) <= 50){
 		signal = true;
+		hitLine.Point_List.push(point_1);
+		hitLine.Point_List.push(point_2);
 		return signal;
 	  }
 	}
