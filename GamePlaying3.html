@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <title>CatchYourDragon_GamePage</title>  
            
-    <script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery.XYTipsWindow.2.8.js"></script>
     <script type="text/javascript" src="js/Change_Direction.js"></script>
     <script type="text/javascript" src="js/Make_Position.js"></script>
     <script type="text/javascript" src="js/Move.js"></script>
@@ -15,7 +15,19 @@
     <script type="text/javascript">
       var Crack_List = new Array();
       $(document).ready(function(){
+		$("#button_setting").click(function(){
+		  $.XYTipsWindow({
+			___title:"Setting",
+			___content:"iframe:Setting.html",
+			___width:"330",
+			___height:"170",
+			___showbg:true,
+			___drag:"___boxTitle"
+		  });
+		});
+		
         animateDiv();
+		
         $("#glass").on("click", function(event){
           if (Crack_List.length <= 10){
             draw(event.pageY, event.pageX);
@@ -25,6 +37,7 @@
             }
           }
         })
+		
       });          
     </script>
     
@@ -35,11 +48,13 @@
         font-size:36px;
         font-style:italic;
         font-weight:bold;
-        display:inline-block;          
+        display:inline-block;
+	  }
     </style>
     </head>
         
     <body style="background-image:url(images/bg.png)">
+	<div style="display:inline-block; position:fixed; z-index:100; left:50px; top:50px;"><button id="button_setting" type="button" style="border-radius:15px; border-color:#96E445";><img src="images/setting.png" width="80px;"></button></div>
     <div style="display:inline-block; position:fixed; z-index:100; right:75px; top:25px;">
       <span class="label">Score: </span><div id="scoreboard" class="label" style="display:inline-block;">0</div>
       <br />   
