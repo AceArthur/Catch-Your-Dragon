@@ -16,7 +16,7 @@ function animateDiv(){
   var center_left = oldq.left + 59;
   var flag=crackDetection(center_top, center_left);
   if (count>18) {document.getElementById("scoreboard").innerHTML = 200; alert("Y catch it.");
-    window.location.href='./Setting.html';};
+    window.location.href='./Setting3.html';};
   if( flag=== true)
   {
   	count=count+5;
